@@ -370,7 +370,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 					$this->plugin->includeClass("class.ilMatchMemoTheme.php");
 					$theme = new ilMatchMemoTheme(ilUtil::stripSlashes($title), ilUtil::stripSlashes($_POST['themes']["easy"][$idx]), ilUtil::stripSlashes($_POST['themes']["medium"][$idx]), ilUtil::stripSlashes($_POST['themes']["hard"][$idx]));
 					$theme->mixedpools = $_POST['themes']['rows'][$idx];
-					foreach ($_POST['themes']['mixed'][$idx] as $counter => $selection)
+					foreach ((array)$_POST['themes']['mixed'][$idx] as $counter => $selection)
 					{
 						if ($selection > 0) $theme->addMixedPool($selection, $_POST['themes']['mixed_percent'][$idx][$counter]);
 					}

@@ -1,6 +1,7 @@
 <?php
 
 include_once("./Services/Repository/classes/class.ilObjectPluginAccess.php");
+include_once("./Customizing/global/plugins/Services/Repository/RepositoryObject/MatchMemo/classes/class.ilMatchMemoPlugin.php");
 
 /**
 * Access/Condition checking for Match & Memo object
@@ -42,7 +43,7 @@ class ilObjMatchMemoAccess extends ilObjectPluginAccess
 				if (!ilObjMatchMemoAccess::_lookupCreationComplete($a_obj_id) &&
 					(!$ilAccess->checkAccessOfUser($a_user_id, "write", "", $a_ref_id)))
 				{
-					$ilAccess->addInfoItem(IL_NO_OBJECT_ACCESS, $lng->txt("mry_warning_not_complete"));
+					$ilAccess->addInfoItem(IL_NO_OBJECT_ACCESS, ilMatchMemoPlugin::getInstance()->txt("mry_warning_not_complete"));
 					return false;
 				}
 				break;
@@ -53,7 +54,7 @@ class ilObjMatchMemoAccess extends ilObjectPluginAccess
 			case "game":
 				if (!ilObjMatchMemoAccess::_lookupCreationComplete($a_obj_id))
 				{
-					$ilAccess->addInfoItem(IL_NO_OBJECT_ACCESS, $lng->txt("mry_warning_not_complete"));
+					$ilAccess->addInfoItem(IL_NO_OBJECT_ACCESS, ilMatchMemoPlugin::getInstance()->txt("mry_warning_not_complete"));
 					return false;
 				}
 				break;
