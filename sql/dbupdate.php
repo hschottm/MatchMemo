@@ -363,7 +363,7 @@ if ($ilDB->tableExists('mpl'))
 		{
 			$res = $ilDB->manipulateF("INSERT INTO rep_robj_xmry_tmixed (mry_themes_mixed_id, theme_fi, obj_fi, percent, sequence) VALUES (%s, %s, %s, %s, %s)",
 				array('integer', 'integer', 'integer', 'float','integer'),
-				array($row['mry_themes_mixed_id'], $row['theme_fi'], $row['obj_fi'], $row['percent'], $row['sequence'])
+				array($row['mry_themes_mixed_id'], $row['theme_fi'], $row['obj_fi'], (float)$row['percent'], (int)$row['sequence'])
 			);
 			if ($row['mry_themes_mixed_id'] > $max_index) $max_index = $row['mry_themes_mixed_id'];
 		}
