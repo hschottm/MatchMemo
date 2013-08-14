@@ -1,3 +1,8 @@
+crs_create_xmry#:#Create Match & Memo Game
+grp_create_xmry#:#Create Match & Memo Game
+fold_create_xmry#:#Create Match & Memo Game
+root_create_xmry#:#Create Match & Memo Game
+cat_create_xmry#:#Create Match & Memo Game
 obj_xmry#:#Match & Memo Game
 objs_xmry#:#Match & Memo Games
 xmry_add#:#Add Match & Memo Game
