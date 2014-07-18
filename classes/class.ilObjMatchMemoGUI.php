@@ -70,6 +70,12 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 				$ilTabs->setTabActive("meta_data");
 				return $this->ctrl->forwardCommand($md_gui);
 				break;
+
+			case 'ilcommonactiondispatchergui':
+				require_once 'Services/Object/classes/class.ilCommonActionDispatcherGUI.php';
+				$gui = ilCommonActionDispatcherGUI::getInstanceFromAjaxCall();
+				$this->ctrl->forwardCommand($gui);
+				break;
 		}
 
 		switch ($cmd)

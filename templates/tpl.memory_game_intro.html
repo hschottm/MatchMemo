@@ -54,7 +54,7 @@ function initHelpWindow() {
 		close: true,
 		icon: YAHOO.widget.SimpleDialog.ICON_HELP,
 		modal: true,
-		zIndex:2000,
+		zIndex:10000,
 		constraintoviewport: true,
 		buttons: [ { text:"OK", handler:handleYes, isDefault:true }]
 	} );
@@ -67,6 +67,6 @@ function initHelpWindow() {
 	}
 }
 
-YAHOO.util.Event.onDOMReady(initHelpWindow);
+il.Util.addOnLoad(initHelpWindow);
 
 </script>

@@ -1,8 +1,5 @@
 var Dom = YAHOO.util.Dom;
 var Event = YAHOO.util.Event;
-var $ = function(id) {
-      return document.getElementById(id);
-} 
 
 YAHOO.namespace("ilias");
 
