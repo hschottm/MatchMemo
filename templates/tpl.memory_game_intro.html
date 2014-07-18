@@ -45,6 +45,7 @@ var handleYes = function() {
 
 
 function initHelpWindow() {
+	// @todo: If the modal overlay does not work (e.g. in chrome), remove the ILIAS fixed header
 	help = new YAHOO.widget.SimpleDialog("helpwindow", 
 	{ 
 		width: "500px",
@@ -57,7 +58,7 @@ function initHelpWindow() {
 		zIndex:10000,
 		constraintoviewport: true,
 		buttons: [ { text:"OK", handler:handleYes, isDefault:true }]
-	} );
+	});
 	help.render("memory");
 
 	helpurls = YAHOO.util.Dom.getElementsBy(function (el) { return (el.className == 'help') ? true : false; }, 'a', document);
