@@ -590,6 +590,18 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$form->setId("game_start_form");
 		$step = (strlen($_POST['step'])) ? $_POST['step'] : 1;
 		$step += $direction;
+
+		$first_step_available = true;
+		if(
+			$step < 3 &&
+			is_array($this->object->themes) && count($this->object->themes) == 1
+		)
+		{
+			$step                 = 2;
+			$_POST['topic']       = $this->object->themes[0]->id;
+			$first_step_available = false;
+		}
+
 		$hidden = new ilHiddenInputGUI("step");
 		$hidden->setValue($step);
 		$form->addItem($hidden);
@@ -601,7 +613,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		}
 		else
 		{
-			if ($step > 1)
+			if($step > 1 && ($step != 2 || $first_step_available))
 			{
 				$form->addCommandButton("startPrevious", $this->lng->txt("previous"));
 			}
