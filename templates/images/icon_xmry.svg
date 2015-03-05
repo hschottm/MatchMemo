@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="SVGs" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="53.846px" height="48.951px" viewBox="0 0 53.846 48.951" enable-background="new 0 0 53.846 48.951" xml:space="preserve">
+<g id="MatchMemo">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="26.79" y1="36.6328" x2="26.79" y2="11.6328">
+		<stop  offset="0.0245" style="stop-color:#29ABE2"/>
+		<stop  offset="0.5091" style="stop-color:#28A9E1"/>
+		<stop  offset="0.6868" style="stop-color:#23A2DC"/>
+		<stop  offset="0.8139" style="stop-color:#1A96D5"/>
+		<stop  offset="0.9164" style="stop-color:#0F86C9"/>
+		<stop  offset="1" style="stop-color:#0071BC"/>
+	</linearGradient>
+	<path fill="url(#SVGID_1_)" stroke="#0071BC" stroke-miterlimit="10" d="M41.29,36.633h-29V13.976c0-1.104,1.028-2.343,2.133-2.343
+		h25c1.104,0,1.867,1.238,1.867,2.343V36.633z"/>
+	<path fill="#FFFFFF" d="M39.795,19.039c0-0.009-0.005-0.017-0.005-0.026V19l-0.003-0.002c-0.023-0.48-0.412-0.865-0.898-0.865
+		c-0.042,0-0.077,0.018-0.117,0.023l-0.029-0.023c-0.517,0-23.311,0-24.07,0c-0.117,0-0.215,0.028-0.304,0.066
+		c-0.03,0.012-0.056,0.03-0.084,0.045c-0.036,0.022-0.072,0.043-0.103,0.069c-0.231,0.165-0.392,0.421-0.392,0.726
+		c0,0.007,0.004,0.012,0.004,0.019c-0.001,0.009-0.004,0.023-0.004,0.023v16.051h26V19.065
+		C39.791,19.056,39.795,19.048,39.795,19.039z"/>
+	<g>
+		<rect x="15.79" y="20.133" fill="#C4C4C4" width="4" height="4"/>
+		<rect x="21.79" y="20.133" fill="#6395E3" width="4" height="4"/>
+		<rect x="27.79" y="20.133" fill="#95BF71" width="4" height="4"/>
+		<rect x="33.79" y="20.133" fill="#C4C4C4" width="4" height="4"/>
+		<rect x="15.79" y="26.133" fill="#6395E3" width="4" height="4"/>
+		<rect x="21.79" y="26.133" fill="#C4C4C4" width="4" height="4"/>
+		<rect x="27.79" y="26.133" fill="#E39652" width="4" height="4"/>
+		<rect x="33.79" y="26.133" fill="#E1CB47" width="4" height="4"/>
+		<rect x="15.79" y="32.133" fill="#DC6D61" width="4" height="3"/>
+		<rect x="21.79" y="32.133" fill="#A9CE8A" width="4" height="3"/>
+		<rect x="27.79" y="32.133" fill="#D1D0CE" width="4" height="3"/>
+		<rect x="33.79" y="32.133" fill="#D1D0CE" width="4" height="3"/>
+	</g>
+	<line fill="none" stroke="#0071BC" stroke-miterlimit="10" x1="12.79" y1="35.633" x2="40.79" y2="35.633"/>
+</g>
+</svg>

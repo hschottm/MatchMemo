@@ -1,4 +1,4 @@
-<div class="cancelbutton"><a href="{CANCEL_URL}">{CANCEL_GAME}</a></div>
+<div class="cancelbutton"><a class="btn btn-default" href="{CANCEL_URL}">{CANCEL_GAME}</a></div>
 <div id="memory" class="yui-skin-sam">
 <!-- BEGIN background -->
 <img src="{BACKGROUND_IMAGE}" class="stretch" alt="background" />
@@ -49,14 +49,14 @@
 </script>
 <div id="memoryfinished" style="display: none;">
 	<p>{FINISH_MESSAGE}</p>
-	<form name="highscoreform" method="post" action="{FORMACTION}">
+	<form name="highscoreform" method="post" action="{FORMACTION}" role="form" class="form-horizontal preventDoubleSubmission">
 		<input type="hidden" name="movecount" />
 		<input type="hidden" name="start" value="{TIME_START}" />
 		<input type="hidden" name="level" value="{TEXT_LEVEL}" />
 		<input type="hidden" name="cards" value="{TEXT_CARDS}" />
 		<input type="hidden" name="topic" value="{TEXT_TOPIC}" />
 		<input type="hidden" name="stop" />
-		{TEXT_NICKNAME}: <input type="text" name="nickname" size="20" /> <input type="submit" class="submit" name="cmd[saveHighScore]" value="{SAVE_HIGHSCORE}" /> <input type="submit" class="submit" name="cmd[skipHighScore]" value="{SKIP_HIGHSCORE}" />
+		{TEXT_NICKNAME}: <input class="form-control" type="text" name="nickname" size="20" /> <input type="submit" class="btn btn-default" name="cmd[saveHighScore]" value="{SAVE_HIGHSCORE}" /> <input type="submit" class="btn btn-default" name="cmd[skipHighScore]" value="{SKIP_HIGHSCORE}" />
 	</form>
 </div>
 <div id="moves">{TEXT_MOVES}: <span class="moves">0</span></div>

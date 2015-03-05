@@ -193,8 +193,8 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 			if ($this->getEnabled())
 			{
 				$template->setCurrentBlock('buttons');
-				$template->setVariable("ADD_BUTTON", ilUtil::getImagePath('edit_add.png'));
-				$template->setVariable("REMOVE_BUTTON", ilUtil::getImagePath('edit_remove.png'));
+				$template->setVariable("ADD_BUTTON", ilGlyphGUI::get(ilGlyphGUI::ADD));
+				$template->setVariable("REMOVE_BUTTON", ilGlyphGUI::get(ilGlyphGUI::REMOVE));
 				$template->setVariable("BUTTON_POST_VAR", $this->getPostVar());
 				$template->setVariable("BUTTON_ROW_INDEX", $i);
 				$template->parseCurrentBlock();
