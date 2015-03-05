@@ -1,5 +1,5 @@
 <!-- BEGIN cancelbutton -->
-<div class="cancelbutton"><a href="{CANCEL_URL}">{CANCEL_GAME}</a></div>
+<div class="cancelbutton"><a class="btn btn-default" href="{CANCEL_URL}">{CANCEL_GAME}</a></div>
 <!-- END cancelbutton -->
 <div id="memory">
 <!-- BEGIN heading -->
@@ -9,9 +9,9 @@
 <div class="intro">{TEXT_INTRO}</div>
 <!-- END intro -->
 <div class="commandbuttons">
-	<a class="help" href="{URL_HELP}" onclick="javascript:return false;">{TEXT_HELP}</a>
+	<a class="help btn btn-default" href="{URL_HELP}" onclick="javascript:return false;">{TEXT_HELP}</a>
 <!-- BEGIN newgame -->	
-	<a class="newgame" href="{URL_NEWGAME}">{TEXT_NEWGAME}</a>
+	<a class="newgame btn btn-default" href="{URL_NEWGAME}">{TEXT_NEWGAME}</a>
 <!-- END newgame -->	
 </div>
 </div>
@@ -61,7 +61,7 @@ function initHelpWindow() {
 	});
 	help.render("memory");
 
-	helpurls = YAHOO.util.Dom.getElementsBy(function (el) { return (el.className == 'help') ? true : false; }, 'a', document);
+	helpurls = YAHOO.util.Dom.getElementsBy(function (el) { return (YAHOO.util.Dom.hasClass(el, 'help')) ? true : false; }, 'a', document);
 	for (i = 0; i < helpurls.length; i++)
 	{
 		YAHOO.util.Event.addListener(helpurls[i], 'click', showHelp);

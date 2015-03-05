@@ -1,6 +1,7 @@
 <?php
 
 include_once("./Services/Repository/classes/class.ilObjectPluginGUI.php");
+require_once 'Services/UIComponent/Glyph/classes/class.ilGlyphGUI.php';
 
 /**
 * User Interface class for Match & Memo game repository object.
@@ -74,7 +75,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			case 'ilcommonactiondispatchergui':
 				require_once 'Services/Object/classes/class.ilCommonActionDispatcherGUI.php';
 				$gui = ilCommonActionDispatcherGUI::getInstanceFromAjaxCall();
-				$this->ctrl->forwardCommand($gui);
+				return $this->ctrl->forwardCommand($gui);
 				break;
 		}
 
