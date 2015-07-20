@@ -79,11 +79,11 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 		{
 			$this->themes = array();
 			$this->plugin->includeClass("class.ilMatchMemoTheme.php");
-			foreach ($a_value['title'] as $idx => $title)
+			foreach ((array)$a_value['title'] as $idx => $title)
 			{
 				$theme = new ilMatchMemoTheme($title, $a_value['easy'][$idx], $a_value['medium'][$idx], $a_value['hard'][$idx]);
 				$theme->mixedpools = $a_value['rows'][$idx];
-				foreach ($a_value['mixed'][$idx] as $counter => $selection)
+				foreach ((array)$a_value['mixed'][$idx] as $counter => $selection)
 				{
 					if ($selection > 0) $theme->addMixedPool($selection, $_POST['themes']['mixed_percent'][$idx][$counter]);
 				}

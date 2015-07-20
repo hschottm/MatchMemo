@@ -80,3 +80,4 @@ back_url_info#:#If you need ILIAS to redirect to a special location when a user 
 properties#:#Properties
 matchmemo_plugin_configuration#:#Match & Memo Plugin Configuration
 configuration_saved#:#Configuration saved
+msg_input_is_required#:#Please choose a desired theme configuration.
