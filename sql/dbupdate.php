@@ -388,3 +388,14 @@ if ($ilDB->tableExists('mpl'))
 }
 
 ?>
+<#7>
+<?php
+if($ilDB->tableColumnExists('rep_robj_xmry_tmixed', 'percent'))
+{
+	$ilDB->modifyTableColumn('rep_robj_xmry_tmixed', 'percent', array(
+		'type'     => 'float',
+		'default'  => null,
+		'notnull'  => false
+	));
+}
+?>
