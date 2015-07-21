@@ -965,6 +965,8 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		if ($this->object->fullscreen)
 		{
 			$this->tpl->setAddFooter(FALSE);
+			require_once 'Services/jQuery/classes/class.iljQueryUtil.php';
+			iljQueryUtil::initjQuery($this->tpl);
 			$this->tpl->addCss($this->plugin->getDirectory() . "/templates/memory.css", "screen");
 //			$this->tpl->addCss(ilUtil::getStyleSheetLocation("output", "memory.css", 'Customizing/global/plugins/Services/Repository/RepositoryObject/MatchMemo'), "screen");
 			$this->tpl->setBodyClass('yui-skin-sam fullscreen');
