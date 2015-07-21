@@ -84,6 +84,13 @@
 	function finishGame()
 	{
 		var elem = YAHOO.util.Dom.get('memoryfinished');
+
+		var fmgsg = $("#finishedmsg").clone();
+		fmgsg.attr("id", "");
+		fmgsg.text(fmgsg.text().replace(/%s/g, clickcounter));
+		fmgsg.css("display", "block");
+		$("#memoryfinished").prepend(fmgsg);
+
 		elem.style.display = 'block';
 	}
 

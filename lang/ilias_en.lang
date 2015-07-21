@@ -40,7 +40,7 @@ level_medium#:#Medium
 level_hard#:#Hard
 level_mixed#:#Mixed level of difficulty
 nr_of_moves#:#Number of moves
-memory_finished#:#Congratulations. You finished the Match & Memo game in moves. Please enter a nickname to store your results in the highscore list.
+memory_finished#:#Congratulations. You finished the Match & Memo game in %s moves. Please enter a nickname to store your results in the highscore list.
 memory_nickname#:#Nickname
 memory_save_highscore#:#Save Score
 memory_skip_highscore#:#Continue

@@ -40,7 +40,7 @@ level_medium#:#Mittel
 level_hard#:#Schwer
 level_mixed#:#Gemischter Schwierigkeitsgrad
 nr_of_moves#:#Anzahl der Züge
-memory_finished#:#Glückwunsch! Sie haben das Match & Memo Spiel in Zügen gelöst. Bitte geben Sie Ihren Spitznamen an, um sich in die Bestenliste einzutragen.
+memory_finished#:#Glückwunsch! Sie haben das Match & Memo Spiel in %s Zügen gelöst. Bitte geben Sie Ihren Spitznamen an, um sich in die Bestenliste einzutragen.
 memory_nickname#:#Spitzname
 memory_save_highscore#:#Ergebnis speichern
 memory_skip_highscore#:#Weiter

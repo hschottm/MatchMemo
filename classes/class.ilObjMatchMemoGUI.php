@@ -235,6 +235,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 	{
 		global $ilTabs;
 		$ilTabs->setTabActive("properties");
+		$this->tpl->addCss($this->plugin->getDirectory() . "/templates/memory.css", "screen");
 
 		$save = ((strcmp($this->ctrl->getCmd(), "saveProperties") == 0)) ? true : false;
 
@@ -537,17 +538,21 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 	
 	public function getHelpOutput()
 	{
-		global $ilUser;
-		global $ilTabs;
+		/**
+		 * @var $lng ilLanguage
+		 */
+		global $lng, $ilTabs;
+
 		$ilTabs->setTabActive("memory_game");
 
 		$help = "";
-		if (@file_exists($this->plugin->getDirectory() . "/templates/default/help_" . $ilUser->prefs["language"] . ".html"))
+		$path = $this->plugin->getDirectory() . "/templates/help_" . $lng->getLangKey() . ".html";
+		if(@file_exists($path))
 		{
-//			$help = @file_get_contents($this->plugin->getDirectory() . "/templates/default/help_" . $ilUser->prefs["language"] . ".html");
-			$tplhelp = $this->plugin->getTemplate('help_' . $ilUser->prefs["language"] . '.html');
+			$tplhelp = $this->plugin->getTemplate('help_' . $lng->getLangKey()  . '.html');
 			$tplhelp->touchBlock("__global__");
-			$help = $tplhelp->get("__global__");
+			$tplhelp->parseCurrentBlock();
+			$help = $tplhelp->get();
 		}
 		else
 		{
