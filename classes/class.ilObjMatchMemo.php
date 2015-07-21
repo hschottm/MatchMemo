@@ -363,7 +363,12 @@ class ilObjMatchMemo extends ilObjectPlugin
 	{
 		global $ilDB;
 		
-		$result = $ilDB->queryF("SELECT *, (time_end-time_start) time_total FROM rep_robj_xmry_high WHERE obj_fi = %s AND gamelevel = %s AND moves < %s ORDER BY moves, time_total DESC",
+		$result = $ilDB->queryF(
+			"SELECT *, (time_end-time_start) time_total
+			FROM rep_robj_xmry_high
+			INNER JOIN rep_robj_xmry_themes ON rep_robj_xmry_themes.theme_id = theme_fi
+			WHERE rep_robj_xmry_high.obj_fi = %s AND gamelevel = %s AND moves < %s
+			ORDER BY rep_robj_xmry_themes.title ASC, cards ASC, moves ASC, (time_end - time_start) DESC, nickname ASC",
 			array("integer", "integer", "integer"),
 			array($this->getId(), $level, $moves)
 		);
@@ -374,7 +379,12 @@ class ilObjMatchMemo extends ilObjectPlugin
 	{
 		global $ilDB;
 		
-		$result = $ilDB->queryF("SELECT *, (time_end-time_start) time_total FROM rep_robj_xmry_high WHERE obj_fi = %s AND gamelevel = %s ORDER BY moves, time_total DESC",
+		$result = $ilDB->queryF(
+			"SELECT *, (time_end-time_start) time_total
+			FROM rep_robj_xmry_high
+			INNER JOIN rep_robj_xmry_themes ON rep_robj_xmry_themes.theme_id = theme_fi
+			WHERE rep_robj_xmry_high.obj_fi = %s AND gamelevel = %s
+			ORDER BY rep_robj_xmry_themes.title ASC, cards ASC, moves ASC, (time_end - time_start) DESC, nickname ASC",
 			array("integer", "integer"),
 			array($this->getId(), $level)
 		);
