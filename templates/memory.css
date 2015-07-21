@@ -139,6 +139,7 @@ PLEASE NOTE: It is necessary to set the "overflow" property of the underlay elem
 
 .theme-table .suboption {
 	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 .theme-table .theme-mixed,
