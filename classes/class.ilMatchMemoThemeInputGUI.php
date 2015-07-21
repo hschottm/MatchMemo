@@ -264,6 +264,10 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 			$template->setVariable('TEXT_MEDIUM', $this->plugin->txt('theme_medium'));
 			$template->setVariable('TEXT_HARD', $this->plugin->txt('theme_hard'));
 			$template->setVariable('TEXT_MIXED', $this->plugin->txt('theme_mixed'));
+			if(!$this->getEnabled())
+			{
+				$template->setVariable('DISABLED_TABLE', ' table-disabled');
+			}
 			$template->parseCurrentBlock();
 
 			$i++;
