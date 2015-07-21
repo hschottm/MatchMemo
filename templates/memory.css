@@ -128,3 +128,20 @@ PLEASE NOTE: It is necessary to set the "overflow" property of the underlay elem
 .fullscreen {
 	padding: 2em;
 }
+
+.theme-table {
+	margin-top: -5px;
+}
+
+.theme-table table {
+	margin-bottom: 50px;
+}
+
+.theme-table .suboption {
+	margin-bottom: 5px;
+}
+
+.theme-table .theme-mixed,
+#il_prop_cont_themes > label {
+	cursor: text;
+}
