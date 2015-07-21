@@ -152,14 +152,14 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$info = new ilInfoScreenGUI($this);
 
 		$info->addSection($this->txt("plugininfo"));
-		$info->addProperty('Name', 'Match & Memo Pool');
+		$info->addProperty('Name', 'Match & Memo Spiel');
 		$info->addProperty('Version', xmry_version);
-		$info->addProperty('Developer', 'Helmut Schottmüller');
+		$info->addProperty('Developer', 'Helmut Schottmüller / Michael Jansen');
 		$info->addProperty("Match &amp; Memo", "Konzeption: Lt. Florian Andresen; Leitung: RA Anja Krüger, Prof. Dr. jur. Günter Reiner, Professur für Bürgerliches Recht, Handels-, Gesellschafts-, Wirtschafts- und Steuerrecht,	Helmut Schmidt Universität, Universität der Bundeswehr Hamburg");
-		$info->addProperty('Kontakt', 'ilias@aurealis.de');
-		$info->addProperty('&nbsp;', 'Aurealis');
+		$info->addProperty('Kontakt', 'ilias [at] aurealis [dot] de / mjansen [at] databay [dot] de');
+		$info->addProperty('&nbsp;', 'Aurealis / Databay AG');
 		$info->addProperty('&nbsp;', '');
-		$info->addProperty('&nbsp;', "http://www.aurealis.de");
+		$info->addProperty('&nbsp;', "http://www.aurealis.de / http://www.databay.de");
 
 
 
@@ -504,10 +504,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			$template->setVariable('URL_NEWGAME', $this->ctrl->getLinkTarget($this, 'newgame'));
 			$template->setVariable('TEXT_NEWGAME', $this->txt('new_game'));
 			$template->parseCurrentBlock();
-			$template->setCurrentBlock('cancelbutton');
-			$template->setVariable('CANCEL_GAME', $this->txt('cancel_game'));
-			$template->setVariable('CANCEL_URL', $this->ctrl->getLinkTarget($this, 'infoScreen'));
-			$template->parseCurrentBlock();
 		}
 		$template->setVariable('URL_HELP', $this->ctrl->getLinkTarget($this, 'help'));
 		$template->setVariable('TEXT_HELP', $this->txt('memory_help'));
@@ -515,6 +511,13 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$template->setVariable('TEXT_HIGHSCORE', $this->txt('highscore'));
 		$template->setVariable('HELP_TEXT', $help);
 		$template->setVariable('HELP_TITLE', $this->lng->txt('help'));
+
+		if($this->object->fullscreen)
+		{
+			$template->setVariable('TEXT_FINISH', $this->txt('exit_game'));
+			$template->setVariable('URL_FINISH', $this->ctrl->getLinkTarget($this, 'exitgame'));
+		}
+
 		$this->tpl->setVariable($this->getContentBlockName(), $template->get());
 
 		ilObjMatchMemoGUI::initMatchMemo();
@@ -822,8 +825,11 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$template->setVariable('TEXT_LEVEL', $level);
 		$template->setVariable('TEXT_CARDS', $size);
 		$template->setVariable('TEXT_TOPIC', $topic);
-		$template->setVariable('CANCEL_GAME', $this->txt('cancel_game'));
-		$template->setVariable('CANCEL_URL', $this->ctrl->getLinkTarget($this, 'infoScreen'));
+		if($this->object->fullscreen)
+		{
+			$template->setVariable('CANCEL_GAME', $this->txt('exit_game'));
+			$template->setVariable('CANCEL_URL', $this->ctrl->getLinkTarget($this, 'infoScreen'));
+		}
 		$this->tpl->setVariable($this->getContentBlockName(), $template->get());
 
 		$this->tpl->setVariable('BODY_ATTRIBUTES', ' id="body"');

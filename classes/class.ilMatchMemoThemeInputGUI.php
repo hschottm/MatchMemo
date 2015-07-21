@@ -171,7 +171,13 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 				$template->setVariable("PROPERTY_VALUE", ilUtil::prepareFormOutput($theme->title));
 				$template->parseCurrentBlock();
 			}
-			foreach ($theme->getAvailablePools() as $obj_id => $pool)
+
+			$pools = $theme->getAvailablePools();
+			if(count($pools))
+			{
+				$pools[0] = $this->plugin->txt('obj_xmpl_select');
+			}
+			foreach ($pools as $obj_id => $pool)
 			{
 				$template->setCurrentBlock("option_easy");
 				$template->setVariable("OPTION_VALUE", $obj_id);
@@ -203,7 +209,12 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 			// mixed pool selection
 			for ($j = 0; $j < $theme->mixedpools; $j++)
 			{
-				foreach ($theme->getAvailablePools() as $obj_id => $pool)
+				$pools = $theme->getAvailablePools();
+				if(count($pools))
+				{
+					$pools[0] = $this->plugin->txt('obj_xmpl_select');
+				}
+				foreach($pools as $obj_id => $pool)
 				{
 					$template->setCurrentBlock("option_mixed");
 					$template->setVariable("OPTION_VALUE", $obj_id);
