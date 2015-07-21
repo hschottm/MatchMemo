@@ -150,3 +150,7 @@ PLEASE NOTE: It is necessary to set the "overflow" property of the underlay elem
 .table.table-disabled label {
 	cursor: text !important;
 }
+
+#il_prop_cont_topicdisabled label,  #il_prop_cont_leveldisabled label {
+	cursor: text !important;
+}

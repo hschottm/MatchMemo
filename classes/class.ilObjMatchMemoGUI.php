@@ -600,7 +600,9 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$step = (strlen($_POST['step'])) ? $_POST['step'] : 1;
 		$step += $direction;
 
-		$first_step_available = true;
+		$first_step_available  = true;
+		$second_step_available = true;
+
 		if(
 			$step < 3 &&
 			is_array($this->object->themes) && count($this->object->themes) == 1
@@ -611,25 +613,65 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			$first_step_available = false;
 		}
 
+		if($step < 3)
+		{
+			$this->plugin->includeClass("class.ilMatchMemoTheme.php");
+			$theme = ilMatchMemoTheme::_instanciate($_POST['topic']);
+			if($theme)
+			{
+				$theme_levels = array_filter(array(
+					0 => (bool)$theme->easy,
+					1 => (bool)$theme->medium,
+					2 => (bool)$theme->hard,
+					3 => (bool)$theme->hasMixedPools()
+				));
+				if(count($theme_levels) == 1)
+				{
+					if($direction == -1 && $step == 2)
+					{
+						$step = 1;
+					}
+					else
+					{
+						$step = 3;
+					}
+					$_POST['level']        = key($theme_levels);
+					$second_step_available = false;
+				}
+			}
+		}
+
 		$hidden = new ilHiddenInputGUI("step");
 		$hidden->setValue($step);
 		$form->addItem($hidden);
 		
-		if ($step == 3)
+		if($step == 3)
 		{
-			$form->addCommandButton("startPrevious", $this->lng->txt("previous"));
-			$form->addCommandButton("startGame", $this->txt("start"));
-		}
-		else
-		{
-			if($step > 1 && ($step != 2 || $first_step_available))
+			if(!$first_step_available && !$second_step_available)
 			{
-				$form->addCommandButton("startPrevious", $this->lng->txt("previous"));
+				$form->addCommandButton("game", $this->lng->txt("back"));
 			}
 			else
 			{
+				$form->addCommandButton("startPrevious", $this->lng->txt("previous"));
+			}
+			$form->addCommandButton("startGame", $this->txt("start"));
+		}
+		else if($step == 2)
+		{
+			if(!$first_step_available)
+			{
 				$form->addCommandButton("game", $this->lng->txt("previous"));
 			}
+			else
+			{
+				$form->addCommandButton("startPrevious", $this->lng->txt("previous"));
+			}
+			$form->addCommandButton("startNext", $this->lng->txt("next"));
+		}
+		else
+		{
+			$form->addCommandButton("game", $this->lng->txt("previous"));
 			$form->addCommandButton("startNext", $this->lng->txt("next"));
 		}
 
@@ -663,14 +705,31 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			$theme = ilMatchMemoTheme::_instanciate($_POST['topic']);
 			// level
 			$var = ($step > 2) ? 'leveldisabled' : 'level';
-			$level = new ilRadioGroupInputGUI($this->lng->txt("level"), $var);
-			if ($theme->easy) $level->addOption(new ilRadioOption($this->txt('level_easy'), 0));
-			if ($theme->medium) $level->addOption(new ilRadioOption($this->txt('level_medium'), 1));
-			if ($theme->hard) $level->addOption(new ilRadioOption($this->txt('level_hard'), 2));
-			if ($theme->hasMixedPools()) $level->addOption(new ilRadioOption($this->txt('level_mixed'), 3));
-			$level->setValue($_POST['level']);
+			$level      = new ilRadioGroupInputGUI($this->lng->txt("level"), $var);
+			$levels     = array();
+			if($theme->easy)
+			{
+				$level->addOption(new ilRadioOption($this->txt('level_easy'), 0));
+				$levels[] = 0;
+			}
+			if($theme->medium)
+			{
+				$level->addOption(new ilRadioOption($this->txt('level_medium'), 1));
+				$levels[] = 1;
+			}
+			if($theme->hard)
+			{
+				$level->addOption(new ilRadioOption($this->txt('level_hard'), 2));
+				$levels[] = 2;
+			}
+			if($theme->hasMixedPools())
+			{
+				$level->addOption(new ilRadioOption($this->txt('level_mixed'), 3));
+				$levels[] = 3;
+			}
+			$level->setValue(isset($_POST['level']) ? $_POST['level'] : (count($levels) == 1 ? $levels[0] : ''));
 			$level->setRequired(true);
-			if ($step > 2) 
+			if($step > 2) 
 			{
 				$level->setDisabled(true);
 			}
