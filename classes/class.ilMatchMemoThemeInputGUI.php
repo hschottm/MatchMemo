@@ -139,7 +139,13 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 					$totalpercentage = 0.0;
 					foreach ($mixedpools as $poolidx => $obj_fi)
 					{
-						$totalpercentage += $_POST[$this->getPostVar()]['mixed_percent'][$themeidx][$poolidx];
+						$pecentage        = trim($_POST[$this->getPostVar()]['mixed_percent'][$themeidx][$poolidx]);
+						if($pecentage && ($pecentage < 1 || $pecentage > 99 || !ctype_digit($pecentage)))
+						{
+							$this->setAlert($this->plugin->txt("msg_wrong_percentage_range"));
+							return false;
+						}
+						$totalpercentage += $pecentage;
 					}
 					if ($totalpercentage > 0 && $totalpercentage != 100.0)
 					{
