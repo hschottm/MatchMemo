@@ -154,3 +154,7 @@ PLEASE NOTE: It is necessary to set the "overflow" property of the underlay elem
 #il_prop_cont_topicdisabled label,  #il_prop_cont_leveldisabled label {
 	cursor: text !important;
 }
+
+.intro {
+	margin-bottom: 10px;
+}
