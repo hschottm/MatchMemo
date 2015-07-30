@@ -70,5 +70,9 @@ function initHelpWindow() {
 }
 
 il.Util.addOnLoad(initHelpWindow);
-
+<!-- BEGIN sel_acc -->
+Event.on(window,"load", function() {
+	YAHOO.ilias.accordion.openHeader({FINISHED_LEVEL});
+});
+<!-- END sel_acc -->
 </script>

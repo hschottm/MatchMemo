@@ -469,6 +469,11 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 
 		$template = $this->plugin->getTemplate('tpl.memory_game_intro.html');
 
+		if(isset($_GET['finished_level']))
+		{
+			$template->setVariable('FINISHED_LEVEL', (int)$_GET['finished_level']);
+		}
+
 		$template->setCurrentBlock('accordion_page');
 		$template->setVariable('ACCORDION_TITLE', $this->txt('level_easy'));
 		$template->setVariable('ACCORDION_CONTENT', $this->getHighScoreOutput($this->object->getHighScores(0)));
@@ -910,7 +915,8 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$startingtime = $_POST['start'];
 		$endingtime = $_POST['stop'];
 		$this->object->saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, $nickname);
-		$this->ctrl->redirect($this, 'finalScreen');
+		$this->ctrl->setParameter($this, 'finished_level', $level);
+		$this->ctrl->redirect($this, 'game');
 	}
 	
 	public function skipHighScore()
@@ -925,7 +931,8 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$cards = $_POST['cards'];
 		$endingtime = $_POST['stop'];
 		$this->object->saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, NULL);
-		$this->ctrl->redirect($this, 'finalScreen');
+		$this->ctrl->setParameter($this, 'finished_level', $level);
+		$this->ctrl->redirect($this, 'game');
 	}
 
 	public function exitgame()

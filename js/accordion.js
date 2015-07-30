@@ -48,6 +48,23 @@ YAHOO.ilias.accordion = {
 			Event.addListener(headers[i],"click",this.clickHeader,headerProperties);
 		}
 	},
+	
+	openHeader: function(nr) {
+		var accordionObjects = Dom.getElementsByClassName("accordion");
+		if(accordionObjects.length > 0) {
+			for (var i = 0; i < accordionObjects.length; i++) {
+				if (accordionObjects[i].nodeName == "DL") {
+					var headers = accordionObjects[i].getElementsByTagName("dt");
+					this.clickHeader(null, {
+						objRef : headers[nr],
+						nr : nr,
+						jsObj : this
+					});
+					break;
+				}
+			}
+		}
+	},
 
 	clickHeader : function(e,headerProperties) {
 		var parentObj = headerProperties.objRef.parentNode;
