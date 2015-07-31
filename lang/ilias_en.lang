@@ -83,3 +83,4 @@ configuration_saved#:#Configuration saved
 msg_input_is_required#:#Please choose a desired theme configuration.
 obj_xmpl_select#:#Select Match & Memo Pool
 msg_wrong_percentage_range#:#Please insert a value between 1 and 99.
+msg_min_different_pools_violation#:#Please choose %s different pools.

@@ -136,18 +136,58 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 				}
 				foreach ($_POST[$this->getPostVar()]['mixed'] as $themeidx => $mixedpools)
 				{
+					$req_number_of_pools = max(2, (int)$_POST[$this->getPostVar()]['rows'][$themeidx]);
+
 					$totalpercentage = 0.0;
-					foreach ($mixedpools as $poolidx => $obj_fi)
+					$valid_pools     = array();
+					$all_empty       = true;
+
+					foreach($mixedpools as $poolidx => $obj_fi)
 					{
+						if(!$obj_fi)
+						{
+							continue;
+						}
+
+						$pecentage = trim($_POST[$this->getPostVar()]['mixed_percent'][$themeidx][$poolidx]);
+						if(strlen($pecentage))
+						{
+							$all_empty = false;
+							break;
+						}
+					}
+
+					foreach($mixedpools as $poolidx => $obj_fi)
+					{
+						if(!$obj_fi)
+						{
+							continue;
+						}
+
 						$pecentage        = trim($_POST[$this->getPostVar()]['mixed_percent'][$themeidx][$poolidx]);
-						if($pecentage && ($pecentage < 1 || $pecentage > 99 || !ctype_digit($pecentage)))
+						if(!$all_empty && !strlen($pecentage))
+						{
+							$this->setAlert($this->plugin->txt("msg_wrong_percentage"));
+							return false;
+						}
+
+						if(strlen($pecentage) && ($pecentage < 1 || $pecentage > 99 || !ctype_digit($pecentage)))
 						{
 							$this->setAlert($this->plugin->txt("msg_wrong_percentage_range"));
 							return false;
 						}
+
 						$totalpercentage += $pecentage;
+						$valid_pools[$poolidx] = $poolidx;
 					}
-					if ($totalpercentage > 0 && $totalpercentage != 100.0)
+
+					if(count($valid_pools) < $req_number_of_pools)
+					{
+						$this->setAlert(sprintf($this->plugin->txt("msg_min_different_pools_violation"), $req_number_of_pools));
+						return false;
+					}
+					
+					if($totalpercentage > 0 && $totalpercentage != 100.0)
 					{
 						$this->setAlert($this->plugin->txt("msg_wrong_percentage"));
 						return false;
