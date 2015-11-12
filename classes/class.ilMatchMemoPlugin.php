@@ -60,4 +60,57 @@ class ilMatchMemoPlugin extends ilRepositoryObjectPlugin
 
 		return self::$instance;
 	}
+
+	protected function uninstallCustom()
+	{
+		/**
+		 * @var $ilDB ilDB
+		 */
+		global $ilDB;
+
+		if($ilDB->tableExists('rep_robj_xmry_themes'))
+		{
+			$ilDB->dropTable('rep_robj_xmry_themes');
+		}
+		if($ilDB->sequenceExists('rep_robj_xmry_themes'))
+		{
+			$ilDB->dropSequence('rep_robj_xmry_themes');
+		}
+
+		if($ilDB->tableExists('rep_robj_xmry_pair'))
+		{
+			$ilDB->dropTable('rep_robj_xmry_pair');
+		}
+		if($ilDB->sequenceExists('rep_robj_xmry_pair'))
+		{
+			$ilDB->dropSequence('rep_robj_xmry_pair');
+		}
+
+		if($ilDB->tableExists('rep_robj_xmry'))
+		{
+			$ilDB->dropTable('rep_robj_xmry');
+		}
+		if($ilDB->sequenceExists('rep_robj_xmry'))
+		{
+			$ilDB->dropSequence('rep_robj_xmry');
+		}
+
+		if($ilDB->tableExists('rep_robj_xmry_high'))
+		{
+			$ilDB->dropTable('rep_robj_xmry_high');
+		}
+		if($ilDB->sequenceExists('rep_robj_xmry_high'))
+		{
+			$ilDB->dropSequence('rep_robj_xmry_high');
+		}
+
+		if($ilDB->tableExists('rep_robj_xmry_tmixed'))
+		{
+			$ilDB->dropTable('rep_robj_xmry_tmixed');
+		}
+		if($ilDB->sequenceExists('rep_robj_xmry_tmixed'))
+		{
+			$ilDB->dropSequence('rep_robj_xmry_tmixed');
+		}
+	}
 }
