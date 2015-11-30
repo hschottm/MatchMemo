@@ -136,8 +136,15 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 				}
 				foreach ($_POST[$this->getPostVar()]['mixed'] as $themeidx => $mixedpools)
 				{
-					$req_number_of_pools     = max(2, (int)$_POST[$this->getPostVar()]['rows'][$themeidx]);
-					$number_of_desired_pools = count(array_filter(array_map('intval', $mixedpools)));
+					$req_number_of_pools            = max(2, (int)$_POST[$this->getPostVar()]['rows'][$themeidx]);
+					$number_of_desired_pools        = count(array_filter(array_map('intval', $mixedpools)));
+					$number_of_unique_desired_pools = count(array_unique(array_filter(array_map('intval', $mixedpools))));
+
+					if($number_of_desired_pools > 0 && $number_of_desired_pools > $number_of_unique_desired_pools)
+					{
+						$this->setAlert(sprintf($this->plugin->txt("msg_min_different_pools_violation"), $req_number_of_pools));
+						return false;
+					}
 
 					$totalpercentage = 0.0;
 					$valid_pools     = array();
