@@ -181,7 +181,7 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 						$valid_pools[$poolidx] = $poolidx;
 					}
 
-					if(count($valid_pools) < $req_number_of_pools)
+					if(count($valid_pools) > 0 && count($valid_pools) < $req_number_of_pools)
 					{
 						$this->setAlert(sprintf($this->plugin->txt("msg_min_different_pools_violation"), $req_number_of_pools));
 						return false;
