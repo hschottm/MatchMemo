@@ -4,7 +4,7 @@
 $id = "xmry";
  
 // code version; must be changed for all code changes
-define('xmry_version', '1.2.0');
+define('xmry_version', '1.2.1');
 $version = xmry_version;
  
 // ilias min and max version; must always reflect the versions that should
