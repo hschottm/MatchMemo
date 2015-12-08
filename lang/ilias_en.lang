@@ -20,10 +20,6 @@ mry_show_title#:#Show Match & Memo title in card header
 mry_highscore_single#:#Highscore entries occur only once per participant
 mry_highscore_single_desc#:#A participant is only shown once with his nickname in the highscore with his/her best score.
 mry_warning_not_complete#:#The Match & Memo game is not complete.
-mry_show_title#:#Show Match & Memo title in card header
-mry_highscore_single#:#Highscore entries occur only once per participant
-mry_highscore_single_desc#:#A participant is only shown once with his nickname in the highscore with his/her best score.
-mry_warning_not_complete#:#The Match & Memo game is not complete.
 plugininfo#:#Plugin-Information
 memory_game#:#Match & Memo Game
 maintenance#:#Maintenance

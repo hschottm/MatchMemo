@@ -20,10 +20,6 @@ mry_show_title#:#Match & Memo Titel im Kopf der Karten anzeigen
 mry_highscore_single#:#Pro Teilnehmer nur einen Eintrag in der Bestenliste erlauben
 mry_highscore_single_desc#:#Teilnehmer werden in der Bestenliste nur ein Mal mit ihrem jeweils besten Ergebnis angezeigt.
 mry_warning_not_complete#:#Das Match & Memo-Spiel ist nicht vollständig.
-mry_show_title#:#Match & Memo Titel im Kopf der Karten anzeigen
-mry_highscore_single#:#Pro Teilnehmer nur einen Eintrag in der Bestenliste erlauben
-mry_highscore_single_desc#:#Teilnehmer werden in der Bestenliste nur ein Mal mit ihrem jeweils besten Ergebnis angezeigt.
-mry_warning_not_complete#:#Das Match & Memo-Spiel ist nicht vollständig.
 plugininfo#:#Plugin-Information
 memory_game#:#Match & Memo Spiel
 maintenance#:#Wartung
