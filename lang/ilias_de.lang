@@ -54,7 +54,7 @@ found_pair#:#Paar gefunden
 continue#:#Weiter
 background_image#:#Hintergrundbild
 participants#:#Teilnehmende
-msg_all_data_deleted#:#Daten aller Teilnehmenden löschen
+msg_all_data_deleted#:#Die Daten aller Teilnehmenden wurden gelöscht.
 msg_selected_data_deleted#:#Ausgewählte Daten gelöscht
 confirm_delete_all_data#:#Wollen Sie wirklich die Daten aller Teilnehmenden löschen?
 msg_no_selection#:#Sie haben keine Auswahl getroffen.
