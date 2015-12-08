@@ -970,7 +970,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$this->plugin->includeClass("class.ilMatchMemoMaintenanceTableGUI.php");
 		$table_gui = new ilMatchMemoMaintenanceTableGUI($this, 'maintenance', (($rbacsystem->checkAccess('write', $this->ref_id) ? true : false)));
 		$data = $this->object->getMaintenanceData();
-		$table_gui->setData($data);
+		$table_gui->populate($data);
 		$this->tpl->setVariable('ADM_CONTENT', $table_gui->getHTML());	
 	}
 
@@ -994,26 +994,31 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			$this->ctrl->redirect($this, 'maintenance');
 		}
 		global $rbacsystem;
-		ilUtil::sendInfo($this->txt("confirm_delete_selected_data"));
+		ilUtil::sendQuestion($this->txt("confirm_delete_selected_data"));
 		$this->plugin->includeClass("class.ilMatchMemoMaintenanceTableGUI.php");
 		$table_gui = new ilMatchMemoMaintenanceTableGUI($this, 'maintenance', (($rbacsystem->checkAccess('write', $this->ref_id) ? true : false)), true);
 		$data = $this->object->getMaintenanceData($_POST['p_id']);
-		$table_gui->setData($data);
+		$table_gui->populate($data);
 		$this->tpl->setVariable('ADM_CONTENT', $table_gui->getHTML());	
 	}
 
 	public function deleteAllResults()
 	{
+		/**
+		 * @var $ilTabs ilTabsGUI
+		 */
 		global $ilTabs;
+
 		$ilTabs->setTabActive("maintenance");
 
-		ilUtil::sendInfo($this->txt("confirm_delete_all_data"));
-		$template = $this->plugin->getTemplate("tpl.memory_deleteall.html");
-		$template->setVariable("DELETE", $this->lng->txt("confirm"));
-		$template->setVariable("CANCEL", $this->lng->txt("cancel"));
-		$template->setVariable("FORMACTION", $this->ctrl->getFormAction($this, 'maintenance'));
+		require_once 'Services/Utilities/classes/class.ilConfirmationGUI.php';
+		$confirmation = new ilConfirmationGUI();
+		$confirmation->setFormAction($this->ctrl->getFormAction($this, 'maintenance'));
+		$confirmation->setHeaderText($this->txt('confirm_delete_all_data'));
+		$confirmation->setConfirm($this->lng->txt('confirm'), 'confirmDeleteAll');
+		$confirmation->setCancel($this->lng->txt('cancel'), 'cancelMaintenanceDelete');
 
-		$this->tpl->setVariable("ADM_CONTENT", $template->get());
+		$this->tpl->setContent($confirmation->getHTML());
 	}
 
 	public function cancelMaintenanceDelete()

@@ -36,23 +36,23 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 	protected $writeAccess = false;
 	protected $delete = false;
 	protected $plugin;
-	
+
 	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @param
-	 * @return
+	 * ilMatchMemoMaintenanceTableGUI constructor.
+	 * @param            $a_parent_obj
+	 * @param string     $a_parent_cmd
+	 * @param bool|false $a_write_access
+	 * @param bool|false $delete
 	 */
 	public function __construct($a_parent_obj, $a_parent_cmd, $a_write_access = false, $delete = false)
 	{
+		global $lng, $ilCtrl;
+
 		$this->setId('mm_maint');
 		parent::__construct($a_parent_obj, $a_parent_cmd);
 
-		global $lng, $ilCtrl;
-
-		$this->lng = $lng;
-		$this->ctrl = $ilCtrl;
+		$this->lng    = $lng;
+		$this->ctrl   = $ilCtrl;
 		$this->delete = $delete;
 		include_once "./Services/Component/classes/class.ilPlugin.php";
 		$this->plugin = ilPlugin::getPluginObject(IL_COMP_SERVICE, "Repository", "robj", "MatchMemo");
@@ -61,7 +61,7 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 		$this->setTitle($this->plugin->txt('participants'));
 		$this->setFormName('maintenanceForm');
 		$this->setStyle('table', 'fullwidth');
-		if (!$delete)
+		if(!$delete)
 		{
 			$this->addColumn('','f','1%');
 			$this->addColumn($this->plugin->txt("rank"),'rank', '');
@@ -72,22 +72,6 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 		$this->addColumn($this->lng->txt("time"),'time', '');
 		$this->addColumn($this->plugin->txt("topic"),'topic', '');
 		$this->addColumn($this->lng->txt("level"),'level', '');
-
-		if ($this->getWriteAccess())
-		{
-			if (!$delete)
-			{
-				$this->addMultiCommand('deleteResults', $this->lng->txt('delete'));
-				$this->addCommandButton('deleteAllResults', $this->lng->txt('delete_all'));
-				$this->setPrefix('p_id');
-				$this->setSelectAllCheckbox('p_id');
-			}
-			else
-			{
-				$this->addCommandButton('confirmDeleteSelected', $this->lng->txt('confirm'));
-				$this->addCommandButton('cancelDeleteSelected', $this->lng->txt('cancel'));
-			}
-		}
 
 		$this->setRowTemplate("tpl.maintenance_row.html", 'Customizing/global/plugins/Services/Repository/RepositoryObject/MatchMemo');
 
@@ -101,11 +85,34 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 	}
 
 	/**
-	 * fill row 
-	 *
-	 * @access public
-	 * @param
-	 * @return
+	 * @param array $data
+	 */
+	public function populate(array $data)
+	{
+		if($this->getWriteAccess())
+		{
+			if(!$this->delete)
+			{
+				$this->addMultiCommand('deleteResults', $this->lng->txt('delete'));
+				if(count($data) > 0)
+				{
+					$this->addCommandButton('deleteAllResults', $this->lng->txt('delete_all'));
+				}
+				$this->setPrefix('p_id');
+				$this->setSelectAllCheckbox('p_id');
+			}
+			else
+			{
+				$this->addCommandButton('confirmDeleteSelected', $this->lng->txt('confirm'));
+				$this->addCommandButton('cancelDeleteSelected', $this->lng->txt('cancel'));
+			}
+		}
+
+		$this->setData($data);
+	}
+
+	/**
+	 * @param array $data
 	 */
 	public function fillRow($data)
 	{
