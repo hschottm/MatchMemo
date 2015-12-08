@@ -30,7 +30,45 @@ class ilObjMatchMemo extends ilObjectPlugin
 		$this->_themes = array();
 		$this->arrData = array();
 	}
-	
+
+	/**
+	 *
+	 */
+	protected function cleanupHighScore()
+	{
+		/**
+		 * @var $ilDB ilDB
+		 */
+		global $ilDB;
+
+		foreach(range(0, 3) as $game_level)
+		{
+			$white_list = array();
+			$nicknames  = array();
+			$high_score = $this->getHighScores($game_level);
+			foreach($high_score as $score)
+			{
+				if(!$score['nickname'])
+				{
+					$white_list[] = $score['high_id'];
+					continue;
+				}
+
+				if(!isset($nicknames[$score['nickname']]))
+				{
+					$white_list[]                  = $score['high_id'];
+					$nicknames[$score['nickname']] = true;
+				}
+			}
+
+			$in = $ilDB->in('high_id', $white_list, true, 'integer');
+			$ilDB->manipulateF(
+				"DELETE FROM rep_robj_xmry_high WHERE $in AND gamelevel = %s",
+				array('integer'),
+				array($game_level)
+			);
+		}
+	}
 
 	/**
 	* Get type.
@@ -122,12 +160,18 @@ class ilObjMatchMemo extends ilObjectPlugin
 			array("integer"),
 			array($this->getId())
 		);
-		if ($result->numRows())
+		if($ilDB->numRows($result))
 		{
+			$current_row = $ilDB->fetchAssoc($result);
 			$affectedRows = $ilDB->manipulateF("UPDATE rep_robj_xmry SET back_url = %s, background = %s, fullscreen = %s, heading = %s, intro = %s, show_title = %s, highscore_single = %s, updated = %s WHERE obj_fi = %s",
 				array('text', 'text', 'integer', 'text', 'text', 'integer', 'integer', 'integer', 'integer'),
 				array($this->back_url, (strlen($this->background)) ? $this->background : null, $this->fullscreen, $this->heading, ilRTE::_replaceMediaObjectImageSrc($this->intro, 0), $this->show_title, $this->highscore_single, time(), $this->getId())
 			);
+
+			if(!$current_row['highscore_single'] && $this->highscore_single)
+			{
+				$this->cleanupHighScore();
+			}
 		}
 		else
 		{
