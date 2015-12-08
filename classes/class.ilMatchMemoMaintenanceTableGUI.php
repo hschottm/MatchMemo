@@ -46,6 +46,7 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 	 */
 	public function __construct($a_parent_obj, $a_parent_cmd, $a_write_access = false, $delete = false)
 	{
+		$this->setId('mm_maint');
 		parent::__construct($a_parent_obj, $a_parent_cmd);
 
 		global $lng, $ilCtrl;
@@ -84,7 +85,7 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 			else
 			{
 				$this->addCommandButton('confirmDeleteSelected', $this->lng->txt('confirm'));
-				$this->addCommandButton('cancelDelete', $this->lng->txt('cancel'));
+				$this->addCommandButton('cancelDeleteSelected', $this->lng->txt('cancel'));
 			}
 		}
 

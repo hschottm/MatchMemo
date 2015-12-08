@@ -89,6 +89,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			case "setrowsthemes":
 			case "maintenance":
 			case "deleteResults":
+			case "cancelDeleteSelected":
 			case "deleteAllResults":
 			case "cancelMaintenanceDelete":
 			case "confirmDeleteAll":
@@ -971,6 +972,15 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$data = $this->object->getMaintenanceData();
 		$table_gui->setData($data);
 		$this->tpl->setVariable('ADM_CONTENT', $table_gui->getHTML());	
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function cancelDeleteSelected()
+	{
+		ilUtil::sendInfo($this->lng->txt('msg_cancel'), true);
+		$this->ctrl->redirect($this, 'maintenance');
 	}
 
 	public function deleteResults()
