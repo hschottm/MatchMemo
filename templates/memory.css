@@ -15,22 +15,22 @@ table.il_ColumnLayout {
 	background: none;
 }
 
-div#memory {
-	width: 700px;
-	margin: 0px auto;
-}
-
-#memory .row {
-	clear: both;
+.row-centered {
+	text-align:center;
 }
 
 #memory .card {
+	display:inline-block;
+	float:none;
+	/* reset the text-align */
+	text-align:left;
+
+	/* custom width */
 	width: 75px;
 	height: 75px;
 	background-color: #12738D;
 	border: 1px #666 solid;
 	margin: 5px;
-	float: left;
 }
 
 #memory .cardinactive {
