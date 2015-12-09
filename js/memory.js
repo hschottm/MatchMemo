@@ -183,6 +183,7 @@
 			width:"300px",
 			zIndex:1000,
 			draggable: true,
+			constraintoviewport: true,
 			close: false,
 			effect:{effect:fadeEffect,duration:0.25} } );
 		YAHOO.example.container.leftcard.render("memory");
@@ -205,6 +206,7 @@
 			width:"300px",
 			zIndex:1000,
 			draggable: true,
+			constraintoviewport: true,
 			close: false,
 			effect:{effect:fadeEffect,duration:0.25} } );
 			YAHOO.example.container.rightcard.render("memory");

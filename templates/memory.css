@@ -158,3 +158,7 @@ PLEASE NOTE: It is necessary to set the "overflow" property of the underlay elem
 .intro {
 	margin-bottom: 10px;
 }
+
+#found_c, #leftcard_c, #rightcard_c {
+	z-index: 10000 !important;
+}
