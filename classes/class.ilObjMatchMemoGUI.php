@@ -398,7 +398,14 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		if ($this->writeProperties() == 0)
 		{
 			$this->object->doUpdate();
-			ilUtil::sendInfo($this->lng->txt("msg_obj_modified"), true);
+			if(!$this->object->highScoresExist())
+			{
+				ilUtil::sendInfo($this->txt("msg_obj_modified_with_pool_sync"), true);
+			}
+			else
+			{
+				ilUtil::sendInfo($this->txt("msg_obj_modified"), true);
+			}
 			$this->ctrl->redirect($this, 'properties');
 		}
 	}

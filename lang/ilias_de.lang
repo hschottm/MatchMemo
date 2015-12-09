@@ -76,6 +76,8 @@ back_url_info#:#Wenn Sie es wünschen, dass die Teilnehmenden nach Beendigung ei
 properties#:#Eigenschaften
 matchmemo_plugin_configuration#:#Match & Memo Plugin-Konfiguration
 configuration_saved#:#Konfiguration gespeichert
+msg_obj_modified#:#Konfiguration gespeichert
+msg_obj_modified_with_pool_sync#:#Konfiguration gespeichert und Karten aus den Match & Memo Pools übernommen.
 msg_input_is_required#:#Bitte treffen Sie entsprechende Einstellungen bzgl. der Themengebiete
 obj_xmpl_select#:#Wähle Match & Memo Pool
 msg_wrong_percentage_range#:#Der Wertebereich der prozentualen Anteile liegt zwischen 1 und 99. Bitte geben Sie einen entsprechenden Wert ein.
