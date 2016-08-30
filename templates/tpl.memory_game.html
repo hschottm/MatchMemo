@@ -46,6 +46,23 @@
 		memoryCards[{CARD_CONTENT_ID}] = '{CARD_CONTENT_TEXT}';
 <!-- END card -->
 	}
+
+	$(document).ready(function() 
+	{
+		$('#id_save').prop('disabled', true);
+		$('#id_nickname').keyup(function() 
+		{
+			if($(this).val() != '') 
+			{
+				$('#id_save').prop('disabled', false);
+			}
+			else
+			{
+				$('#id_save').prop('disabled', true);
+			}
+		});
+	});
+	
 </script>
 <div id="memoryfinished" style="display: none;">
 	<p id="finishedmsg" style="display: none;">{FINISH_MESSAGE}</p>
@@ -56,7 +73,9 @@
 		<input type="hidden" name="cards" value="{TEXT_CARDS}" />
 		<input type="hidden" name="topic" value="{TEXT_TOPIC}" />
 		<input type="hidden" name="stop" />
-		{TEXT_NICKNAME}: <input class="form-control" type="text" name="nickname" size="20" /> <input type="submit" class="btn btn-default" name="cmd[saveHighScore]" value="{SAVE_HIGHSCORE}" /> <input type="submit" class="btn btn-default" name="cmd[skipHighScore]" value="{SKIP_HIGHSCORE}" />
+		{TEXT_NICKNAME}: <input id="id_nickname" class="form-control" type="text" name="nickname" size="20" /> 
+		<input id="id_save" type="submit" class="btn btn-default" name="cmd[saveHighScore]" value="{SAVE_HIGHSCORE}" /> 
+		<input id="id_skip" type="submit" class="btn btn-default" name="cmd[skipHighScore]" value="{SKIP_HIGHSCORE}" />
 	</form>
 </div>
 <div id="moves">{TEXT_MOVES}: <span class="moves">0</span></div>

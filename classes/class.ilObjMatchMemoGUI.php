@@ -932,14 +932,14 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		global $ilTabs;
 		$ilTabs->setTabActive("memory_game");
 
-		$moves = $_POST['movecount'];
-		$level = $_POST['level'];
-		$topic = $_POST['topic'];
-		$startingtime = $_POST['start'];
-		$cards = $_POST['cards'];
-		$endingtime = $_POST['stop'];
-		$this->object->saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, NULL);
-		$this->ctrl->setParameter($this, 'finished_level', $level);
+//		$moves = $_POST['movecount'];
+//		$level = $_POST['level'];
+//		$topic = $_POST['topic'];
+//		$startingtime = $_POST['start'];
+//		$cards = $_POST['cards'];
+//		$endingtime = $_POST['stop'];
+//		$this->object->saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, NULL);
+//		$this->ctrl->setParameter($this, 'finished_level', $level);
 		$this->ctrl->redirect($this, 'game');
 	}
 
