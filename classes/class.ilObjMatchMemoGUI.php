@@ -26,8 +26,8 @@ require_once 'Services/UIComponent/Glyph/classes/class.ilGlyphGUI.php';
 */
 class ilObjMatchMemoGUI extends ilObjectPluginGUI
 {
-	protected $plugin;
-	protected $poolplugin;
+	public $plugin;
+	public $poolplugin;
 	
 	/**
 	* Initialisation
