@@ -51,6 +51,56 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 	}
 
 	/**
+	 * @return bool|void
+	 */
+	public function executeCommand()
+	{
+		if (!$this->getCreationMode()) {
+			$cmd = $this->ctrl->getCmd();
+			if (!$cmd) {
+				$cmd = $this->getStandardCmd();
+			}
+
+			switch ($cmd) {
+				case 'game':
+				case 'help':
+				case 'startPrevious':
+				case 'startNext':
+				case 'startGame':
+				case 'newgame':
+				case 'skipHighScore':
+				case 'saveHighScore':
+				case 'exitgame':
+				case 'finalScreen':
+				if ($this->object->fullscreen) {
+					if (version_compare(ILIAS_VERSION_NUMERIC, '5.3.0', '>=')) {
+						global $DIC;
+
+						$tpl = $this->plugin->getTemplate("tpl.fullscreen.html");
+						$tpl->setVariable("LOCATION_STYLESHEET", "./templates/default/delos.css");
+
+						$GLOBALS['tpl'] = $tpl;
+						unset($DIC['tpl']);
+						$DIC['tpl'] = function (\Pimple\Container $c) use ($tpl) {
+							return $GLOBALS['tpl'];
+						};
+					} else {
+						global $tpl;
+
+						$tpl = $this->plugin->getTemplate("tpl.fullscreen.html");
+						$tpl->setVariable("LOCATION_STYLESHEET", "./templates/default/delos.css");
+					}
+
+					$this->tpl = $tpl;
+				}
+				break;
+			}
+		}
+
+		return parent::executeCommand();
+	}
+
+	/**
 	* Handles all commmands of this class, centralizes permission checks
   */
 	function performCommand($cmd)
@@ -108,13 +158,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			case "saveHighScore":
 			case "exitgame":
 			case "finalScreen":
-				if ($this->object->fullscreen)
-				{
-					global $tpl;
-					$tpl = $this->plugin->getTemplate("tpl.fullscreen.html");
-					$tpl->setVariable("LOCATION_STYLESHEET","./templates/default/delos.css");
-					$this->tpl = $tpl;
-				}
 				$this->checkPermission("read");
 				$this->$cmd();
 				return;
