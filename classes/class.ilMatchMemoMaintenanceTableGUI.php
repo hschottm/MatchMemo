@@ -96,7 +96,7 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 				$this->addMultiCommand('deleteResults', $this->lng->txt('delete'));
 				if(count($data) > 0)
 				{
-					$this->addCommandButton('deleteAllResults', $this->lng->txt('delete_all'));
+					$this->addCommandButton('deleteAllResults', $this->plugin->txt('delete_all'));
 				}
 				$this->setPrefix('p_id');
 				$this->setSelectAllCheckbox('p_id');

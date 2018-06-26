@@ -82,3 +82,4 @@ msg_input_is_required#:#Bitte treffen Sie entsprechende Einstellungen bzgl. der 
 obj_xmpl_select#:#Wähle Match & Memo Pool
 msg_wrong_percentage_range#:#Der Wertebereich der prozentualen Anteile liegt zwischen 1 und 99. Bitte geben Sie einen entsprechenden Wert ein.
 msg_min_different_pools_violation#:#Bitte wählen Sie %s unterschiedliche Pools aus.
+delete_all#:#Alle löschen
