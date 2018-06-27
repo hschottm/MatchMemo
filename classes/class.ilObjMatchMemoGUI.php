@@ -92,8 +92,12 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 					}
 
 					$this->tpl = $tpl;
+
+					$this->performCommand($cmd);
+
+					$this->tpl->show();
+					return;
 				}
-				break;
 			}
 		}
 
