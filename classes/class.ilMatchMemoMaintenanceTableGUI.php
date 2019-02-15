@@ -116,8 +116,6 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 	 */
 	public function fillRow($data)
 	{
-		global $lng;
-		
 		if (!$this->delete)
 		{
 			$this->tpl->setCurrentBlock('check');

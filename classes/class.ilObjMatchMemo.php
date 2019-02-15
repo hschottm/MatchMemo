@@ -89,8 +89,6 @@ class ilObjMatchMemo extends ilObjectPlugin
 	*/
 	function doCreate()
 	{
-		global $ilDB;
-		// $myID = $this->getId();
 		$this->createMetaData();
 	}
 	

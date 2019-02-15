@@ -119,8 +119,6 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 	*/	
 	function checkInput()
 	{
-		global $lng;
-
 		if (is_array($_POST[$this->getPostVar()]['title']))
 		{
 			foreach ($_POST[$this->getPostVar()]['title'] as $idx => $title)

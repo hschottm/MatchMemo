@@ -70,7 +70,7 @@ class ilMatchMemoConfigGUI extends ilPluginConfigGUI
 	 */
 	public function save()
 	{
-		global $tpl, $lng, $ilCtrl;
+		global $tpl, $ilCtrl;
 	
 		$pl = $this->getPluginObject();
 		

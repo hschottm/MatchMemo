@@ -190,7 +190,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 	*/
 	function infoScreen()
 	{
-		global $ilAccess, $ilUser, $lng, $ilCtrl, $tpl, $ilTabs;
+		global $lng, $ilCtrl, $ilTabs;
 
 		$ilTabs->setTabActive("info_short");
 
@@ -221,9 +221,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 
 		// forward the command
 		$ret = $ilCtrl->forwardCommand($info);
-
-
-		//$tpl->setContent($ret);
 	}
 	//
 	// DISPLAY TABS
@@ -318,18 +315,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		$intro->setRTESupport($this->object->getId(), "mry", "memory", null, false, "latest");
 		$form->addItem($intro);
 
-/*
-		// image file name
-		$backgroundimage = new ilHiddenInputGUI('', "backgroundimage");
-		$backgroundimage->setValue($this->object->background);
-		$form->addItem($backgroundimage);
-
-		// image file
-		$background = new ilImageFileInputGUI($this->lng->txt("background_image"), "background");
-		if (strlen($this->object->background)) $background->setImage($this->object->getImagePathWeb() . $this->object->getThumbPrefix() . $this->object->background);
-		$background->setRequired(false);
-		$form->addItem($background);
-*/
 		// fullscreen
 		$online = new ilCheckboxInputGUI($this->txt("fullscreen"), "fullscreen");
 		$online->setInfo($this->txt("fullscreen_description"));
@@ -412,10 +397,7 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 				// upload image
 				$filename = $this->object->setImageFile($_FILES['background']);
 			}
-			else
-			{
-				$filename = $_POST['backgroundimage'];
-			}
+
 			$this->object->background = $filename;
 			if (!$this->object->highScoresExist())
 			{
@@ -516,7 +498,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 
 	public function game()
 	{
-		global $ilUser;
 		global $ilTabs;
 		$ilTabs->setTabActive("memory_game");
 
@@ -979,14 +960,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 		global $ilTabs;
 		$ilTabs->setTabActive("memory_game");
 
-//		$moves = $_POST['movecount'];
-//		$level = $_POST['level'];
-//		$topic = $_POST['topic'];
-//		$startingtime = $_POST['start'];
-//		$cards = $_POST['cards'];
-//		$endingtime = $_POST['stop'];
-//		$this->object->saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, NULL);
-//		$this->ctrl->setParameter($this, 'finished_level', $level);
 		$this->ctrl->redirect($this, 'game');
 	}
 
@@ -1109,7 +1082,6 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
 			require_once 'Services/jQuery/classes/class.iljQueryUtil.php';
 			iljQueryUtil::initjQuery($this->tpl);
 			$this->tpl->addCss($this->plugin->getDirectory() . "/templates/memory.css", "screen");
-//			$this->tpl->addCss(ilUtil::getStyleSheetLocation("output", "memory.css", 'Customizing/global/plugins/Services/Repository/RepositoryObject/MatchMemo'), "screen");
 			$this->tpl->setBodyClass('yui-skin-sam fullscreen');
 			return "ADM_CONTENT";
 		}
