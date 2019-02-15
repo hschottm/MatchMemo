@@ -1,15 +1,17 @@
 # MatchMemo
 
+ILIAS version: 5.0.0
+
+**Table of Contents**
+* [Notice Februrary 2019](#notice-(february-2019))
+* [Installation](#installation)
 
 ## Notice (February 2019)
 
 This repository will no longer maintained here.
-The Development will continue here: https://github.com/DatabayAG/MatchMemo
+The development continues in a fork of this repository here:
 
-ILIAS version: 5.0.0
-
-**Table of Contents**
-* Installation
+https://github.com/DatabayAG/MatchMemo
 
 ## Installation
 
