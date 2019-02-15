@@ -73,7 +73,10 @@ class ilMatchMemoTheme
 	
 	public static function &_instanciate($id)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
+
 		$theme = null;
 		$result = $ilDB->queryF("SELECT * FROM rep_robj_xmry_themes WHERE theme_id = %s",
 			array("integer"),

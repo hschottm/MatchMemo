@@ -109,7 +109,11 @@ class ilObjMatchMemoGUI extends ilObjectPluginGUI
   */
 	function performCommand($cmd)
 	{
-		global $ilAccess, $ilTabs, $ilErr;
+		global $DIC;
+
+		$ilAccess = $DIC->access();
+		$ilTabs = $DIC->tabs();
+		$ilErr = $DIC['ilErr'];
 
 		$next_class = $this->ctrl->getNextClass($this);
 		switch($next_class)

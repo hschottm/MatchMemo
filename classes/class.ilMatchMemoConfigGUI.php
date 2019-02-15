@@ -32,7 +32,9 @@ class ilMatchMemoConfigGUI extends ilPluginConfigGUI
 	 */
 	function configure()
 	{
-		global $tpl;
+		global $DIC;
+
+		$tpl = $DIC->ui()->mainTemplate();
 
 		$form = $this->initConfigurationForm();
 		$tpl->setContent($form->getHTML());
@@ -50,8 +52,11 @@ class ilMatchMemoConfigGUI extends ilPluginConfigGUI
 	 */
 	public function initConfigurationForm()
 	{
-		global $lng, $ilCtrl;
-		
+		global $DIC;
+
+		$lng = $DIC->language();
+		$ilCtrl = $DIC->ctrl();
+
 		$pl = $this->getPluginObject();
 		$pl->includeClass("class.ilObjMatchMemo.php");
 		include_once("Services/Form/classes/class.ilPropertyFormGUI.php");
@@ -70,10 +75,13 @@ class ilMatchMemoConfigGUI extends ilPluginConfigGUI
 	 */
 	public function save()
 	{
-		global $tpl, $ilCtrl;
-	
+		global $DIC;
+
+		$tpl = $DIC->ui()->mainTemplate();
+		$ilCtrl = $DIC->ctrl();
+
 		$pl = $this->getPluginObject();
-		
+
 		$form = $this->initConfigurationForm();
 		if ($form->checkInput())
 		{

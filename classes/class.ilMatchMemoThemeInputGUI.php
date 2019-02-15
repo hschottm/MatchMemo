@@ -211,8 +211,10 @@ class ilMatchMemoThemeInputGUI extends ilSubEnabledFormPropertyGUI
 	*/
 	function insert(&$a_tpl)
 	{
-		global $lng;
-		
+		global $DIC;
+
+		$lng = $DIC->language();
+
 		$template = $this->plugin->getTemplate("tpl.prop_themeinput.html");
 		$i = 0;
 		foreach ($this->themes as $theme)

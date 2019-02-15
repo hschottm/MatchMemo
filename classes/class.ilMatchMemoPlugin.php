@@ -63,10 +63,9 @@ class ilMatchMemoPlugin extends ilRepositoryObjectPlugin
 
 	protected function uninstallCustom()
 	{
-		/**
-		 * @var $ilDB ilDB
-		 */
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 
 		if($ilDB->tableExists('rep_robj_xmry_themes'))
 		{

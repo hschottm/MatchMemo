@@ -46,7 +46,10 @@ class ilMatchMemoMaintenanceTableGUI extends ilTable2GUI
 	 */
 	public function __construct($a_parent_obj, $a_parent_cmd, $a_write_access = false, $delete = false)
 	{
-		global $lng, $ilCtrl;
+		global $DIC;
+
+		$lng = $DIC->language();
+		$ilCtrl = $DIC->ctrl();
 
 		$this->setId('mm_maint');
 		parent::__construct($a_parent_obj, $a_parent_cmd);

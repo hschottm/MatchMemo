@@ -36,10 +36,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 	 */
 	protected function cleanupHighScore()
 	{
-		/**
-		 * @var $ilDB ilDB
-		 */
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 
 		foreach(range(0, 3) as $game_level)
 		{
@@ -99,7 +98,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 	*/
 	function doRead()
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 
 		$result = $ilDB->queryF("SELECT * FROM rep_robj_xmry WHERE obj_fi = %s",
 			array('integer'),
@@ -150,7 +151,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 	*/
 	function doUpdate()
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 
 		include_once("./Services/RTE/classes/class.ilRTE.php");
 		
@@ -260,8 +263,6 @@ class ilObjMatchMemo extends ilObjectPlugin
 	*/
 	function doDelete()
 	{
-		global $ilDB;
-		// $myID = $this->getId();
 		$this->deleteThemesAndData();
 	}
 	
@@ -289,8 +290,10 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function highScoresExist()
 	{
-		global $ilDB;
-		
+		global $DIC;
+
+		$ilDB = $DIC->database();
+
 		$result = $ilDB->queryF("SELECT high_id FROM rep_robj_xmry_high WHERE obj_fi = %s",
 			array("integer"),
 			array($this->getId())
@@ -300,7 +303,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function saveHighScore($moves, $startingtime, $endingtime, $level, $topic, $cards, $nickname = null)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 
 		$savehighscore = true;
 		if ($nickname != null && $this->highscore_single)
@@ -348,7 +353,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 	
 	public function deleteAllData()
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		$affectedRows = $ilDB->manipulateF("DELETE FROM rep_robj_xmry_high WHERE obj_fi = %s",
 			array('integer'),
@@ -358,7 +365,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function deleteSelectedData($ids)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		$affectedRows = $ilDB->manipulateF("DELETE FROM rep_robj_xmry_high WHERE obj_fi = %s AND " . $ilDB->in('high_id', $ids, false, 'integer'),
 			array('integer'),
@@ -368,7 +377,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function getMaintenanceData($ids = null)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		$result = $ilDB->queryF("SELECT *, (time_end-time_start) time_total FROM rep_robj_xmry_high WHERE obj_fi = %s ORDER BY moves, time_total DESC",
 			array("integer"),
@@ -403,7 +414,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function getRank($moves, $level)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		$result = $ilDB->queryF(
 			"SELECT *, (time_end-time_start) time_total
@@ -419,7 +432,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	public function getHighScores($level)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		$result = $ilDB->queryF(
 			"SELECT *, (time_end-time_start) time_total
@@ -451,7 +466,9 @@ class ilObjMatchMemo extends ilObjectPlugin
 
 	protected function deleteThemesAndData()
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
 		
 		// delete all mixed pools
 		$affectedRows = $ilDB->manipulateF("DELETE FROM rep_robj_xmry_tmixed WHERE theme_fi IN (SELECT theme_id FROM rep_robj_xmry_themes WHERE obj_fi = %s)",

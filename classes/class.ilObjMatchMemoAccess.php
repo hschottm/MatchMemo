@@ -111,7 +111,10 @@ class ilObjMatchMemoAccess extends ilObjectPluginAccess
 	*/
 	function _lookupCreationComplete($a_obj_id)
 	{
-		global $ilDB;
+		global $DIC;
+
+		$ilDB = $DIC->database();
+
 		$result = $ilDB->queryF("SELECT theme_id FROM rep_robj_xmry_themes WHERE obj_fi = %s",
 			array("integer"),
 			array($a_obj_id)
