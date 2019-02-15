@@ -1,5 +1,11 @@
 # MatchMemo
 
+
+## Notice (February 2019)
+
+This repository will no longer maintained here.
+The Development will continue here: https://github.com/DatabayAG/MatchMemo
+
 ILIAS version: 5.0.0
 
 **Table of Contents**
